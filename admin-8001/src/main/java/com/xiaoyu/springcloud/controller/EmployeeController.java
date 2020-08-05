@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j
-@RequestMapping(value = "/admin")
 @ResponseBody
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
     //增
-    @PostMapping(value = "/createEmployee")
-    public CommonResult create(Employee employee){
+    @PostMapping(value = "/admin/createEmployee")
+    public CommonResult create(@RequestBody Employee employee){
         int  result = employeeService.addEmployee(employee);
         log.info("*****插入结果："+result);
         if (result>0){  //成功
@@ -27,7 +26,7 @@ public class EmployeeController {
         }
     }
     //查
-    @GetMapping(value = "/getEmployeeById")
+    @GetMapping(value = "/admin/getEmployeeById")
     public CommonResult<Employee> getEmployeeById(int id){
         Employee result = employeeService.getEmployeeById(id);
         log.info("*****插入结果："+result);
@@ -38,8 +37,8 @@ public class EmployeeController {
         }
     }
     //改
-    @PostMapping(value = "/updateEmployeeById")
-    public CommonResult updateEmployeeById(Employee employee){
+    @PostMapping(value = "/admin/updateEmployeeById")
+    public CommonResult updateEmployeeById(@RequestBody Employee employee){
         int result = employeeService.updateEmployeeById(employee);
         log.info("*****修改结果："+result);
         if (result>0){  //成功
@@ -49,7 +48,7 @@ public class EmployeeController {
         }
     }
     //删除员工
-    @PostMapping(value = "/deleteEmployeeById")
+    @PostMapping(value = "/admin/deleteEmployeeById")
     public  CommonResult deleteEmployeeById(int id){
         int result = employeeService.deleteEmployeeById(id);
         log.info("*****修改结果："+result);
