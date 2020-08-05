@@ -48,7 +48,7 @@ public class EmployeeController {
             return new CommonResult(444,"修改数据库失败",null);
         }
     }
-    //删
+    //删除员工
     @PostMapping(value = "/deleteEmployeeById")
     public  CommonResult deleteEmployeeById(int id){
         int result = employeeService.deleteEmployeeById(id);
