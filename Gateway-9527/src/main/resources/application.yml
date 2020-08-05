@@ -16,10 +16,14 @@ spring:
           predicates:
             - Path=/user/admin/updateEmployeeById/**   #断言,路径相匹配的进行路由
         - id: payment_routh3
-          uri: http://localhost:8001
+          uri: http://localhost:80
           predicates:
-            - Path=/admin/getEmployeeById/**   #断言,路径相匹配的进行路由
+            - Path=/user/admin/createEmployee/**   #断言,路径相匹配的进行路由
 
+        - id: payment_routh4
+          uri: http://localhost:80
+          predicates:
+            - Path=/user/admin/deleteEmployeeById/**   #断言,路径相匹配的进行路由
 eureka:
   instance:
     hostname: cloud-gateway-service
