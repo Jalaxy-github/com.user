@@ -9,27 +9,32 @@
         <result property="password" column="employee_password"/>
         <result property="gender" column="gender"/>
         <result property="departmentName" column="department_name"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="admin" column="admin"/>
+
     </resultMap>
 
     <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="employeeInfo.employeeId">
-            insert into employee(employee_name,employee_password,gender,department_name)values(#{employeeInfo.employeeName},
-            #{employeeInfo.password},#{employeeInfo.gender},#{employeeInfo.departmentName});
+            insert into employee(employee_name,employee_password,gender,department_name,admin)values(#{employeeInfo.employeeName},
+            #{employeeInfo.password},#{employeeInfo.gender},#{employeeInfo.departmentName},#{employeeInfo.admin});
     </insert>
 
     <select id="queryEmployeeById" resultMap="resultEmployee">
         select id as id, employee_name as employee_name, employee_password as employee_password,
-        gender as gender, department_name as department_name from employee where id = #{id}
+        gender as gender, department_name as department_name, admin as admin from employee where id = #{id}
+    </select>
+
+    <select id="queryEmployeeByName" resultMap="resultEmployee">
+        select id as id, employee_name as employee_name, employee_password as employee_password,
+        gender as gender, department_name as department_name, admin as admin from employee where employee_name = #{name}
     </select>
 
     <update id="updateEmployeeById">
         update employee set employee_name = #{employeeInfo.employeeName}, employee_password = #{employeeInfo.password},
-        gender=#{employeeInfo.gender},department_name = #{employeeInfo.departmentName} where id = #{employeeInfo.employeeId}
+        gender=#{employeeInfo.gender},department_name = #{employeeInfo.departmentName},admin= #{employeeInfo.admin} where id = #{employeeInfo.employeeId}
     </update>
 
     <delete id="deleteEmployeeById">
         delete from employee where id = #{id}
     </delete>
-
-
-
 </mapper>

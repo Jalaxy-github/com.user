@@ -17,9 +17,7 @@ public interface EmployeeFeignService {
     @PostMapping(value = "/admin/createEmployee")
     public CommonResult create(Employee employee);
 
-
-
-    @GetMapping(value = "/admin/getEmployeeById")
+    @GetMapping(value = "/getEmployeeById")
     public CommonResult<Employee> getEmployeeById(@RequestParam("id") int id);
 
     @PostMapping(value = "/admin/updateEmployeeById")

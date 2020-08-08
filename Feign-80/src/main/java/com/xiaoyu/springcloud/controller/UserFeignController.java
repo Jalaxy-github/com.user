@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 
 @RestController
 @Slf4j
+@ResponseBody
 public class UserFeignController {
 
     @Resource
@@ -21,7 +22,7 @@ public class UserFeignController {
     }
 
 
-    @GetMapping(value = "/user/admin/getEmployeeById")
+    @GetMapping(value = "/admin/getEmployeeById")
     public CommonResult<Employee> getEmployeeById(@RequestParam("id") int id) {
         return employeeFeignService.getEmployeeById(id);
     }
@@ -34,6 +35,7 @@ public class UserFeignController {
     public  CommonResult deleteEmployeeById(@RequestParam("id") int id) {
         return  employeeFeignService.deleteEmployeeById(id);
     }
+
 
 
 }

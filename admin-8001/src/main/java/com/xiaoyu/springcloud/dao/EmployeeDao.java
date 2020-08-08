@@ -13,4 +13,11 @@ public interface EmployeeDao {
     int updateEmployeeById(@Param("employeeInfo") Employee employee);
 
     int deleteEmployeeById(@Param("id") int id);
+
+    Employee queryEmployeeByName(@Param("name") String name);
+
+
+
+
+
 }

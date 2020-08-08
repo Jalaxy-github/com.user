@@ -9,21 +9,11 @@ public class Employee implements Serializable {
     private String password;
     private String gender;
     private String departmentName;
+    private int admin;
+
 
     public int getEmployeeId() {
         return employeeId;
-    }
-
-    public Employee() {
-    }
-
-
-    public Employee(int employeeId, String employeeName, String password, String gender, String departmentName) {
-        this.employeeId = employeeId;
-        this.employeeName = employeeName;
-        this.password = password;
-        this.gender = gender;
-        this.departmentName = departmentName;
     }
 
     public void setEmployeeId(int employeeId) {
@@ -62,6 +52,14 @@ public class Employee implements Serializable {
         this.departmentName = departmentName;
     }
 
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -70,6 +68,7 @@ public class Employee implements Serializable {
                 ", password='" + password + '\'' +
                 ", gender='" + gender + '\'' +
                 ", departmentName='" + departmentName + '\'' +
+                ", admin=" + admin +
                 '}';
     }
 }

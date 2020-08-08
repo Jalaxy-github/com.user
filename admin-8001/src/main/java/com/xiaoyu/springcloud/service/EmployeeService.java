@@ -8,7 +8,13 @@ public interface EmployeeService {
 
     Employee getEmployeeById(int id);
 
+    Employee getEmployeeByName(String name);
+
     int updateEmployeeById(Employee employee);
 
     int deleteEmployeeById(int id);
+
+    int add(Employee employee);
+
+    Employee login(String employeeName,String password);
 }

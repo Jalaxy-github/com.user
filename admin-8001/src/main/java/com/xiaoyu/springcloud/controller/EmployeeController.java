@@ -8,12 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @Slf4j
 @ResponseBody
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
+    @Autowired
+    private HttpServletRequest request;
     //增
     @PostMapping(value = "/admin/createEmployee")
     public CommonResult create(@RequestBody Employee employee){
@@ -26,7 +32,7 @@ public class EmployeeController {
         }
     }
     //查
-    @GetMapping(value = "/admin/getEmployeeById")
+    @GetMapping(value = "/getEmployeeById")
     public CommonResult<Employee> getEmployeeById(int id){
         Employee result = employeeService.getEmployeeById(id);
         log.info("*****插入结果："+result);
@@ -59,6 +65,46 @@ public class EmployeeController {
         }
 
     }
+
+    //注册admin
+    @PostMapping(value ="/admin/register")
+    public CommonResult add(@RequestBody Employee employee){
+        int res = employeeService.add(employee);
+        return new CommonResult(200,"注册成功",res);
+    }
+
+    //登录
+    @RequestMapping(value = "/admin/login",method = RequestMethod.POST)
+    public CommonResult login(@RequestBody Employee employee){
+        Employee loginRes = employeeService.login(employee.getEmployeeName(), employee.getPassword());
+        if(loginRes==null){
+            return new CommonResult(444,"登录失败",null);
+        }
+        Map<String,Object>map=new HashMap<>();
+        //
+        String token="admin"+loginRes.getEmployeeName();
+        map.put("token",token);
+        return new CommonResult(200,"登录成功",map);
+    }
+    //鉴权删除
+    @PostMapping(value = "/admin/deleteById")
+    public  CommonResult deleteById(int id){
+        String token= (String) request.getHeader("token");
+        if(token.substring(0, 5).equals("admin")){
+            int result = employeeService.deleteEmployeeById(id);
+            log.info("*****修改结果："+result);
+            if (result>0){  //成功
+                return new CommonResult(200,"删除数据成功" ,result);
+            }else {
+                return new CommonResult(444,"删除数据失败",null);
+            }
+        }else {
+            return new CommonResult(444,"你不是管理员",null);
+        }
+
+    }
+
+
 
 
 }
