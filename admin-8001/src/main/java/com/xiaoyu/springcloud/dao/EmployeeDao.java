@@ -4,6 +4,8 @@ import com.xiaoyu.springcloud.entities.Employee;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.ArrayList;
+
 @Mapper
 public interface EmployeeDao {
     int insertEmployee(@Param("employeeInfo") Employee employee);
@@ -16,8 +18,8 @@ public interface EmployeeDao {
 
     Employee queryEmployeeByName(@Param("name") String name);
 
+    ArrayList<Employee> queryEmployee();
 
 
-
-
+    ArrayList<Employee> queryAllEmployee();
 }

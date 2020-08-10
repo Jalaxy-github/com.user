@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class EmployeeController {
             return new CommonResult(444,"插入数据库失败",null);
         }
     }
-    //查
+    //根据员工Id查询员工信息
     @GetMapping(value = "/getEmployeeById")
     public CommonResult<Employee> getEmployeeById(int id){
         Employee result = employeeService.getEmployeeById(id);
@@ -42,6 +43,21 @@ public class EmployeeController {
             return new CommonResult(444,"查询失败",null);
         }
     }
+
+    //查询所有员工信息
+    @GetMapping(value = "/admin/getAllEmployee")
+    public CommonResult<ArrayList<Employee>> getAllEmployee(){
+        ArrayList<Employee> result = employeeService.getAllEmployee();
+        log.info("*****插入结果："+result);
+        if (result != null){  //成功
+            return new CommonResult(200,"查询成功" ,result);
+        }else {
+            return new CommonResult(444,"查询失败",null);
+        }
+    }
+
+
+
     //改
     @PostMapping(value = "/admin/updateEmployeeById")
     public CommonResult updateEmployeeById(@RequestBody Employee employee){

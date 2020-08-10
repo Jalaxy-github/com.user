@@ -11,8 +11,12 @@
         <result property="departmentName" column="department_name"/>
         <result property="departmentName" column="department_name"/>
         <result property="admin" column="admin"/>
-
     </resultMap>
+
+    <select id="queryAllEmployee" resultMap="resultEmployee">
+        select id as id, employee_name as employee_name, employee_password as employee_password,
+        gender as gender, department_name as department_name, admin as admin from employee
+    </select>
 
     <insert id="insertEmployee" useGeneratedKeys="true" keyProperty="employeeInfo.employeeId">
             insert into employee(employee_name,employee_password,gender,department_name,admin)values(#{employeeInfo.employeeName},

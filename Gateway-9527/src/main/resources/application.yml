@@ -31,6 +31,15 @@ spring:
           uri: http://localhost:8001
           predicates:
             - Path=/admin/deleteById/**   #断言,路径相匹配的进行路由
+
+
+        - id: payment_routh6
+          uri: http://localhost:8001
+          predicates:
+           - Path=/admin/getAllEmployee/**   #断言,路径相匹配的进行路由
+
+
+
 eureka:
   instance:
     hostname: cloud-gateway-service

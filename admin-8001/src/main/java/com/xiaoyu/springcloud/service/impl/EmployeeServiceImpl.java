@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -68,4 +69,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
+    @Override
+    public ArrayList<Employee> getAllEmployee() {
+        ArrayList<Employee> employees = employeeDao.queryAllEmployee();
+        return employees;
+    }
 }

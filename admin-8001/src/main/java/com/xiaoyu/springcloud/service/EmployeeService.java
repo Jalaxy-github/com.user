@@ -3,6 +3,8 @@ package com.xiaoyu.springcloud.service;
 import com.xiaoyu.springcloud.entities.CommonResult;
 import com.xiaoyu.springcloud.entities.Employee;
 
+import java.util.ArrayList;
+
 public interface EmployeeService {
     int addEmployee(Employee employee);
 
@@ -17,4 +19,6 @@ public interface EmployeeService {
     int add(Employee employee);
 
     Employee login(String employeeName,String password);
+
+    ArrayList<Employee> getAllEmployee();
 }
