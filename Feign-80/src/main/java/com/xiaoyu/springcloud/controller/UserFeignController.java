@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 @RestController
 @Slf4j
 @ResponseBody
+@CrossOrigin
 public class UserFeignController {
 
     @Resource

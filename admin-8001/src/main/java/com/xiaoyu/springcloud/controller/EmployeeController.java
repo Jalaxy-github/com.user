@@ -16,6 +16,7 @@ import java.util.Map;
 @Controller
 @Slf4j
 @ResponseBody
+@CrossOrigin
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
@@ -69,6 +70,7 @@ public class EmployeeController {
             return new CommonResult(444,"修改数据库失败",null);
         }
     }
+
     //删除员工
     @PostMapping(value = "/admin/deleteEmployeeById")
     public  CommonResult deleteEmployeeById(int id){
